@@ -24,7 +24,7 @@ static void test_get_letter_large_numbers(void)
     assert(get_letter(23) == 'T');  /* 23 % 23 == 0 */
     assert(get_letter(46) == 'T');  /* 46 % 23 == 0 */
     assert(get_letter(24) == 'R');  /* 24 % 23 == 1 */
-    assert(get_letter(12345678) == get_letter(12345678 % 23));
+    assert(get_letter(12345678) == 'Z');  /* 12345678 % 23 == 14 -> Z */
     printf("PASS: test_get_letter_large_numbers\n");
 }
 
