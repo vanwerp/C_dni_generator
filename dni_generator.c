@@ -5,25 +5,54 @@
 char get_letter(int dni_number);
 
 int main(void)
-{   
-    char dni[9];
+{
+    char dni[10];
+    int option = 0;
 
     printf("Welcome to my Spanish ID (DNI) generator \n");
-    printf("Generating ID number... \n");
 
     srand(time(NULL));
-    
-    for (int i = 0; i < 8; i++)
+
+    do
     {
-        dni[i] = (rand() % 10) + '0';
-    }
+        printf("\n--- Menu ---\n");
+        printf("1. Generate a DNI\n");
+        printf("2. Exit\n");
+        printf("Select an option: ");
 
-    printf("Getting ID letter... \n");
-    int dni_number;
-    sscanf(dni,"%d",&dni_number);
-    dni[8] = get_letter(dni_number);
+        if (scanf("%d", &option) != 1)
+        {
+            while (getchar() != '\n');
+            printf("Invalid input. Exiting.\n");
+            break;
+        }
 
-    printf("Your random ID is: %s \n",dni);
+        switch (option)
+        {
+        case 1:
+            printf("Generating ID number... \n");
+            for (int i = 0; i < 8; i++)
+            {
+                dni[i] = (rand() % 10) + '0';
+            }
+            dni[8] = '\0';
+
+            printf("Getting ID letter... \n");
+            int dni_number;
+            sscanf(dni, "%d", &dni_number);
+            dni[8] = get_letter(dni_number);
+            dni[9] = '\0';
+
+            printf("Your random ID is: %s \n", dni);
+            break;
+        case 2:
+            printf("Goodbye!\n");
+            break;
+        default:
+            printf("Invalid option. Please try again.\n");
+            break;
+        }
+    } while (option != 2);
 
     return 0;
 }
