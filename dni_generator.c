@@ -4,9 +4,10 @@
 
 char get_letter(int dni_number);
 
+#ifndef TESTING
 int main(void)
 {   
-    char dni[9];
+    char dni[10];
 
     printf("Welcome to my Spanish ID (DNI) generator \n");
     printf("Generating ID number... \n");
@@ -22,11 +23,13 @@ int main(void)
     int dni_number;
     sscanf(dni,"%d",&dni_number);
     dni[8] = get_letter(dni_number);
+    dni[9] = '\0';
 
     printf("Your random ID is: %s \n",dni);
 
     return 0;
 }
+#endif
 
 char get_letter(int dni_number)
 {
@@ -78,5 +81,7 @@ char get_letter(int dni_number)
         return 'K';
     case 22:
         return 'E';
+    default:
+        return '?';
     }
 }
